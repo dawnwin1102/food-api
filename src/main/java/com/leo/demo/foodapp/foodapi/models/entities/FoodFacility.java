@@ -5,10 +5,7 @@ import com.opencsv.bean.CsvDate;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,8 +45,10 @@ public class FoodFacility implements Serializable {
     @CsvBindByName(column = "FoodItems")
     private String foodItems;
     @CsvBindByName(column = "x")
+    @Column(nullable = true)
     private Double x;
     @CsvBindByName(column = "y")
+    @Column(nullable = true)
     private Double y;
     @CsvBindByName(column = "latitude")
     private Double latitude;
