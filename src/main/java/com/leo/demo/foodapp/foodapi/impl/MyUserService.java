@@ -8,8 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-@Service("userService")
-public class UserService {
+@Service
+public class MyUserService {
     @Autowired
     private UserRepository userRepository;
 

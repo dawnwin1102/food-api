@@ -2,6 +2,8 @@ package com.leo.demo.foodapp.foodapi.models.dto.food;
 
 import com.leo.demo.foodapp.foodapi.models.base.BaseRequest;
 import com.leo.demo.foodapp.foodapi.models.entities.FoodFacility;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
@@ -14,9 +16,12 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 public class FoodRequest extends BaseRequest {
+    @ApiModelProperty(value = "page number")
     @NotNull
     @Min(value = 0, message = "page should great then 0")
     private Integer page;
+
+    @ApiModelProperty(value = "page size")
     @NotNull
     @Range(min = 10, max = 100, message = "size should be in 10 to 100")
     private Integer size;

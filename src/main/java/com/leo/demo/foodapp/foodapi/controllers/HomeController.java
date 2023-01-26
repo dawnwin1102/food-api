@@ -29,4 +29,5 @@ public class HomeController extends BaseApiController {
     public BaseResponse<HomeResponse> hi(@RequestBody HomeRequest request) {
         return this.execService(request, homeService::sayhi);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.leo.demo.foodapp.foodapi.models.base;
+package com.leo.demo.foodapp.foodapi.exception;
 
 import lombok.Data;
 

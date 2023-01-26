@@ -1,16 +1,20 @@
 package com.leo.demo.foodapp.foodapi.config;
 
 
+import com.leo.demo.foodapp.foodapi.exception.UnauthorizedException;
 import com.leo.demo.foodapp.foodapi.models.base.BaseResponse;
-import com.leo.demo.foodapp.foodapi.models.base.BusinessException;
+import com.leo.demo.foodapp.foodapi.exception.BusinessException;
 import com.leo.demo.foodapp.foodapi.models.base.ResponseCode;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.shiro.ShiroException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.validation.ConstraintViolation;
@@ -67,4 +71,24 @@ public class GlobalExceptionHandler {
         response.setResult(null);
         return response;
     }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(ShiroException.class)
+    public BaseResponse handle401(ShiroException e) {
+        log.error(ExceptionUtils.getStackTrace(e));
+        BaseResponse response = new BaseResponse();
+        response.setCode("401");
+        response.setResult(e.getMessage());
+        return response;
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(UnauthorizedException.class)
+    public BaseResponse handle401() {
+        BaseResponse response = new BaseResponse();
+        response.setCode("401");
+        response.setResult("Unauthorized");
+        return response;
+    }
+
 }
