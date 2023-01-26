@@ -6,9 +6,8 @@ package com.leo.demo.foodapp.foodapi.models.base;
  */
 public enum ResponseCode {
     Code_0000("0000", "success"),
-
-    Code_1000("1000","server error");
-
+    Code_1000("1000", "server error"),
+    Code_400("400", "argument validate error");
     /**
      * result code
      */

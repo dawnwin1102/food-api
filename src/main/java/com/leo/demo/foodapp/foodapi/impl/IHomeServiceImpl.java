@@ -1,7 +1,7 @@
 package com.leo.demo.foodapp.foodapi.impl;
 
-import com.leo.demo.foodapp.foodapi.models.HomeRequest;
-import com.leo.demo.foodapp.foodapi.models.HomeResponse;
+import com.leo.demo.foodapp.foodapi.models.dto.home.HomeRequest;
+import com.leo.demo.foodapp.foodapi.models.dto.home.HomeResponse;
 import com.leo.demo.foodapp.foodapi.service.IHomeService;
 import org.springframework.stereotype.Service;
 

@@ -18,7 +18,7 @@ import java.util.function.Function;
 public class BaseApiController {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
-    protected <T extends BaseRequest, R> BaseResponse<R> execService(T request, Function<T, R> function) {
+    protected <T, R> BaseResponse<R> execService(T request, Function<T, R> function) {
         BaseResponse<R> baseResponse = new BaseResponse<>();
         try {
             log.info(String.format("【Request】%s ", request));
@@ -34,8 +34,11 @@ public class BaseApiController {
             baseResponse.setResult(null);
             baseResponse.setCode(ResponseCode.Code_1000.getCode());
             baseResponse.setMessage(ResponseCode.Code_1000.getMessage());
+        } finally {
+            log.info(String.format("【Response】%s", baseResponse));
         }
-        log.info(String.format("【Response】%s", baseResponse));
+
         return baseResponse;
     }
+
 }
