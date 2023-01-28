@@ -3,7 +3,6 @@ package com.leo.demo.foodapp.foodapi.models.entities;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvDate;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;

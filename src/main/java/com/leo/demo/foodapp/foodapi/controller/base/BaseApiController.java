@@ -1,8 +1,8 @@
-package com.leo.demo.foodapp.foodapi.controllers.base;
+package com.leo.demo.foodapp.foodapi.controller.base;
 
 
-import com.leo.demo.foodapp.foodapi.models.base.BaseResponse;
 import com.leo.demo.foodapp.foodapi.exception.BusinessException;
+import com.leo.demo.foodapp.foodapi.models.base.BaseResponse;
 import com.leo.demo.foodapp.foodapi.models.base.ResponseCode;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;

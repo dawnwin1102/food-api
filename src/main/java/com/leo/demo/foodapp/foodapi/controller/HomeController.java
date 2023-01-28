@@ -1,9 +1,9 @@
-package com.leo.demo.foodapp.foodapi.controllers;
+package com.leo.demo.foodapp.foodapi.controller;
 
-import com.leo.demo.foodapp.foodapi.controllers.base.BaseApiController;
+import com.leo.demo.foodapp.foodapi.controller.base.BaseApiController;
+import com.leo.demo.foodapp.foodapi.models.base.BaseResponse;
 import com.leo.demo.foodapp.foodapi.models.dto.home.HomeRequest;
 import com.leo.demo.foodapp.foodapi.models.dto.home.HomeResponse;
-import com.leo.demo.foodapp.foodapi.models.base.BaseResponse;
 import com.leo.demo.foodapp.foodapi.service.IHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -10,7 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class JWTFilter extends BasicHttpAuthenticationFilter {
 
@@ -57,7 +56,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
             try {
                 executeLogin(request, response);
             } catch (Exception e) {
-                response401(request, response);
+                logger.error(e.getMessage());
             }
         }
         return true;
@@ -87,8 +86,9 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     private void response401(ServletRequest req, ServletResponse resp) {
         try {
             HttpServletResponse httpServletResponse = (HttpServletResponse) resp;
+            ((HttpServletResponse) resp).setStatus(401);
             httpServletResponse.sendRedirect("/401");
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
     }

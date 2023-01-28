@@ -1,7 +1,5 @@
 package com.leo.demo.foodapp.foodapi;
 
-import com.leo.demo.foodapp.foodapi.dao.FoodFacilityRepository;
-import com.leo.demo.foodapp.foodapi.models.dto.food.FoodRequest;
 import com.leo.demo.foodapp.foodapi.models.entities.FoodFacility;
 import com.leo.demo.foodapp.foodapi.service.IFoodFacilityService;
 import lombok.extern.slf4j.Slf4j;

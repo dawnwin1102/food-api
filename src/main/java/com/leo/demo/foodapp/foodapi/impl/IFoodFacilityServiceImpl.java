@@ -1,7 +1,9 @@
 package com.leo.demo.foodapp.foodapi.impl;
 
+import com.leo.demo.foodapp.foodapi.cache.FoodFacilityCache;
 import com.leo.demo.foodapp.foodapi.dao.FoodFacilityRepository;
-import com.leo.demo.foodapp.foodapi.models.dto.food.FoodRequest;
+import com.leo.demo.foodapp.foodapi.models.dto.food.FoodFacilityPageRequest;
+import com.leo.demo.foodapp.foodapi.models.dto.food.FoodFacilityRequest;
 import com.leo.demo.foodapp.foodapi.models.entities.FoodFacility;
 import com.leo.demo.foodapp.foodapi.service.IFoodFacilityService;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -30,7 +32,8 @@ public class IFoodFacilityServiceImpl implements IFoodFacilityService {
     private FoodFacilityRepository foodFacilityRepository;
     @Autowired
     private EntityManager entityManager;
-
+    @Autowired
+    private FoodFacilityCache foodFacilityCache;
     @Override
     public List<FoodFacility> initFoodFacilityDB(String fileName) throws IOException, CsvException {
         if (StringUtils.isBlank(fileName) || Files.notExists(Paths.get(fileName))) {
@@ -44,7 +47,7 @@ public class IFoodFacilityServiceImpl implements IFoodFacilityService {
     }
 
     @Override
-    public Page<FoodFacility> getFoodFacilitylist(FoodRequest request) {
+    public Page<FoodFacility> getFoodFacilitylist(FoodFacilityPageRequest request) {
         Pageable pageable = PageRequest.of(request.getPage(), request.getSize());
         return foodFacilityRepository.findAll(pageable);
     }
@@ -60,11 +63,14 @@ public class IFoodFacilityServiceImpl implements IFoodFacilityService {
         return res;
     }
 
+    @Override
     public Optional<FoodFacility> getFoodFacilityByLocationId(Integer locationId) {
         return foodFacilityRepository.findByLocationId(locationId);
     }
 
-    public List<FoodFacility> getFoodFacilityByApplicant(String applicant) {
-        return foodFacilityRepository.findAllByApplicant(applicant);
+    @Override
+    public List<FoodFacility> getFoodFacilityByApplicant(FoodFacilityRequest request) {
+        // we can do something to create specific response, here just return simple cached value
+        return foodFacilityCache.getAllFoodFacilityByApplicant(request);
     }
 }

@@ -25,7 +25,7 @@ public class Knife4jConfiguration {
                         .build())
                 .groupName("2.X")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.leo.demo.foodapp.foodapi.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.leo.demo.foodapp.foodapi.controller"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;

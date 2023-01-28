@@ -1,7 +1,5 @@
 package com.leo.demo.foodapp.foodapi.models.dto.home;
 
-import com.leo.demo.foodapp.foodapi.models.base.BaseRequest;
-import com.leo.demo.foodapp.foodapi.models.base.BaseResponse;
 import lombok.Data;
 
 /**

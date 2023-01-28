@@ -1,9 +1,9 @@
 package com.leo.demo.foodapp.foodapi.config;
 
 
+import com.leo.demo.foodapp.foodapi.exception.BusinessException;
 import com.leo.demo.foodapp.foodapi.exception.UnauthorizedException;
 import com.leo.demo.foodapp.foodapi.models.base.BaseResponse;
-import com.leo.demo.foodapp.foodapi.exception.BusinessException;
 import com.leo.demo.foodapp.foodapi.models.base.ResponseCode;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.shiro.ShiroException;
@@ -78,6 +78,7 @@ public class GlobalExceptionHandler {
         log.error(ExceptionUtils.getStackTrace(e));
         BaseResponse response = new BaseResponse();
         response.setCode("401");
+        response.setMessage("unauthorized");
         response.setResult(e.getMessage());
         return response;
     }
@@ -87,6 +88,7 @@ public class GlobalExceptionHandler {
     public BaseResponse handle401() {
         BaseResponse response = new BaseResponse();
         response.setCode("401");
+        response.setMessage("unauthorized");
         response.setResult("Unauthorized");
         return response;
     }

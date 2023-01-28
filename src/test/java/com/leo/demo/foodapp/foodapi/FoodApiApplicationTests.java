@@ -1,6 +1,7 @@
 package com.leo.demo.foodapp.foodapi;
 
 import com.leo.demo.foodapp.foodapi.impl.IFoodFacilityServiceImpl;
+import com.leo.demo.foodapp.foodapi.models.dto.food.FoodFacilityRequest;
 import com.leo.demo.foodapp.foodapi.models.entities.FoodFacility;
 import com.opencsv.exceptions.CsvException;
 import org.junit.jupiter.api.Assertions;
@@ -38,7 +39,9 @@ class FoodApiApplicationTests {
 
     @Test
     void testGetFoodFacilityByApplicantReturnSuccess() {
-        List<FoodFacility> foodFacilityList = foodFacilityService.getFoodFacilityByApplicant("Senor Sisig");
+        FoodFacilityRequest request=new FoodFacilityRequest();
+        request.setApplicant("Senor Sisig");
+        List<FoodFacility> foodFacilityList = foodFacilityService.getFoodFacilityByApplicant(request);
         Assertions.assertEquals(8, foodFacilityList.size());
     }
 

@@ -1,8 +1,6 @@
 package com.leo.demo.foodapp.foodapi.models.dto.food;
 
 import com.leo.demo.foodapp.foodapi.models.base.BaseRequest;
-import com.leo.demo.foodapp.foodapi.models.entities.FoodFacility;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
@@ -11,11 +9,12 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
+ * need pageable request can extends this type of Request
  * @author leo
  * @date 2023/1/17
  */
 @Data
-public class FoodRequest extends BaseRequest {
+public class PageableRequest extends BaseRequest {
     @ApiModelProperty(value = "page number")
     @NotNull
     @Min(value = 0, message = "page should great then 0")
@@ -26,11 +25,11 @@ public class FoodRequest extends BaseRequest {
     @Range(min = 10, max = 100, message = "size should be in 10 to 100")
     private Integer size;
 
-    public FoodRequest(Integer page, Integer size) {
+    public PageableRequest(Integer page, Integer size) {
         this.page = page;
         this.size = size;
     }
 
-    public FoodRequest() {
+    public PageableRequest() {
     }
 }
