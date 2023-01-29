@@ -20,8 +20,8 @@ This is a demo project to build web API that returns a set of food trucks.
 3. Start app with this command: java -jar food-api-0.0.1-SNAPSHOT.jar
 4. Go to Eureka endpoint:https://localhost:8081/doc.html Knife4j's UI will show as blow:
 ![image.png](https://leowebsite.blob.core.windows.net/images/eureka.png)
-# Run project with docker 
-sudo docker run -it -d --restart always -p 8088:8081 --name food-api-8088 food-api bash
+# Run project with docker
+- sudo docker run -it -d --restart always -p 8088:8081 --name food-api-8088 dawnwin1102/dawnwin1102:latest bash
 when container started goto https://localhost:8088/doc.html
 # API Description
 There is 3 controller and 7 apis expose fo demo
