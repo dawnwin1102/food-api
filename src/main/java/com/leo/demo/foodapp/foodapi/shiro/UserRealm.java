@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class MyRealm extends AuthorizingRealm {
+public class UserRealm extends AuthorizingRealm {
 
     private UserService userService;
 

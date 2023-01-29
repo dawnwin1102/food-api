@@ -19,7 +19,7 @@ import java.util.Map;
 public class ShiroConfig {
 
     @Bean("securityManager")
-    public DefaultWebSecurityManager getManager(MyRealm realm) {
+    public DefaultWebSecurityManager getManager(UserRealm realm) {
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
         manager.setRealm(realm);
 
