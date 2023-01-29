@@ -1,5 +1,6 @@
 package com.leo.demo.foodapp.foodapi.models.base;
 
+import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
 /**
@@ -26,5 +27,10 @@ public class BaseResponse<T> {
         this.code = code;
         this.message = message;
         this.time = System.currentTimeMillis();
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 }

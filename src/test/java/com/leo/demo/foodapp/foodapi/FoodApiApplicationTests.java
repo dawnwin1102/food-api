@@ -27,11 +27,6 @@ class FoodApiApplicationTests {
     }
 
     @Test
-    void testAddRepo() {
-
-    }
-
-    @Test
     void testGetFoodFacilityByLocationIdReturnSuccess() {
         Optional<FoodFacility> foodFacility = foodFacilityService.getFoodFacilityByLocationId(1568947);
         Assertions.assertEquals("Senor Sisig", foodFacility.get().getApplicant());
@@ -39,7 +34,7 @@ class FoodApiApplicationTests {
 
     @Test
     void testGetFoodFacilityByApplicantReturnSuccess() {
-        FoodFacilityRequest request=new FoodFacilityRequest();
+        FoodFacilityRequest request = new FoodFacilityRequest();
         request.setApplicant("Senor Sisig");
         List<FoodFacility> foodFacilityList = foodFacilityService.getFoodFacilityByApplicant(request);
         Assertions.assertEquals(8, foodFacilityList.size());
@@ -52,8 +47,17 @@ class FoodApiApplicationTests {
     }
 
     @Test
-    void testReadCsv() throws CsvException, IOException {
+    void testGetFoodFacilityByApplicantEmpty() {
+        FoodFacilityRequest request = new FoodFacilityRequest();
+        request.setApplicant("xxxxxxxxxx");
+        List<FoodFacility> foodFacilityList = foodFacilityService.getFoodFacilityByApplicant(request);
+        Assertions.assertTrue(foodFacilityList.isEmpty());
+    }
 
-
+    @Test
+    void testGetFoodFacilityByApplicantThrowExceptioon() {
+        Assertions.assertThrows(Exception.class, () -> {
+            foodFacilityService.getFoodFacilityByApplicant(null);
+        });
     }
 }

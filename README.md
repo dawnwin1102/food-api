@@ -16,8 +16,8 @@ This is a demo project to build web API that returns a set of food trucks.
 
 # Buld project and run
 1. Clone the project from git hub.
-2. Use mvn build each project.
-3. Start app with this command: java xx.jar
+2. Use mvn build each project:./mvnw clean package -Dmaven.test.skip=true
+3. Start app with this command: java -jar food-api-0.0.1-SNAPSHOT.jar
 4. Go to Eureka endpoint:https://localhost:8081/doc.html Knife4j's UI will show as blow:
 ![image.png](https://leowebsite.blob.core.windows.net/images/eureka.png)
 # Run project with docker

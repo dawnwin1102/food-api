@@ -1,7 +1,7 @@
 package com.leo.demo.foodapp.foodapi.controller;
 
 import com.leo.demo.foodapp.foodapi.dummydatabase.UserBean;
-import com.leo.demo.foodapp.foodapi.dummydatabase.UserService;
+import com.leo.demo.foodapp.foodapi.impl.UserService;
 import com.leo.demo.foodapp.foodapi.exception.UnauthorizedException;
 import com.leo.demo.foodapp.foodapi.models.base.BaseResponse;
 import com.leo.demo.foodapp.foodapi.models.base.ResponseCode;

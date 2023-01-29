@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class FoodFacilityRequest extends BaseRequest {
     @ApiModelProperty(value = "applicant name")
-    @NotNull
     private String applicant;
+    @ApiModelProperty(value = "address")
+    private String address;
 }

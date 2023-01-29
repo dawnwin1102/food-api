@@ -46,10 +46,16 @@ public class FoodFacilityController extends BaseApiController {
     }
 
     @ApiOperation(value = "get food facility list by applicant", httpMethod = "POST")
-    @RequestMapping(value = "/listbyapplicant", method = {RequestMethod.POST})
-    @Cacheable("food_facility")
-    public BaseResponse<List<FoodFacility>> listByApplicant(@RequestBody @Validated FoodFacilityRequest request) {
+    @RequestMapping(value = "/listByApplicant", method = {RequestMethod.POST})
+    public BaseResponse<List<FoodFacility>> listByApplicant(@RequestBody FoodFacilityRequest request) {
         return this.execService(request, foodFacilityService::getFoodFacilityByApplicant);
+    }
+
+    @ApiOperation(value = "get food facility list by applicant or address", httpMethod = "POST")
+    @RequestMapping(value = "/listByApplicantOrAddress", method = {RequestMethod.POST})
+    @Cacheable("food_facility")
+    public BaseResponse<List<FoodFacility>> listByApplicantOrAddress(@RequestBody FoodFacilityRequest request) {
+        return this.execService(request, foodFacilityService::getFoodFacilityByApplicantOrAddress);
     }
 
     @ApiOperation(value = "get food facility detail", httpMethod = "GET")

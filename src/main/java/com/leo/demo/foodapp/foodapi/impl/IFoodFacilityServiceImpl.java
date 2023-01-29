@@ -12,16 +12,23 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
-import java.io.FileReader;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,14 +41,16 @@ public class IFoodFacilityServiceImpl implements IFoodFacilityService {
     private EntityManager entityManager;
     @Autowired
     private FoodFacilityCache foodFacilityCache;
+
     @Override
     public List<FoodFacility> initFoodFacilityDB(String fileName) throws IOException, CsvException {
         if (StringUtils.isBlank(fileName) || Files.notExists(Paths.get(fileName))) {
             // set to default file
-            fileName = "Mobile_Food_Facility_Permit.csv";
+            fileName = "datafile/Mobile_Food_Facility_Permit.csv";
         }
-        // clean
-        List<FoodFacility> beans = new CsvToBeanBuilder(new FileReader(fileName))
+        ClassPathResource CPR = new ClassPathResource(fileName);
+        InputStreamReader inputStreamReader = new InputStreamReader(CPR.getInputStream());
+        List<FoodFacility> beans = new CsvToBeanBuilder(inputStreamReader)
                 .withType(FoodFacility.class).build().parse();
         return foodFacilityRepository.saveAllAndFlush(beans);
     }
@@ -72,5 +81,35 @@ public class IFoodFacilityServiceImpl implements IFoodFacilityService {
     public List<FoodFacility> getFoodFacilityByApplicant(FoodFacilityRequest request) {
         // we can do something to create specific response, here just return simple cached value
         return foodFacilityCache.getAllFoodFacilityByApplicant(request);
+    }
+
+    @Override
+    public List<FoodFacility> getFoodFacilityByApplicantOrAddress(FoodFacilityRequest request) {
+        Specification<FoodFacility> specification = new Specification<FoodFacility>() {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public Predicate toPredicate(Root<FoodFacility> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                String applicant = request.getApplicant();
+                String address = request.getAddress();
+                List<Predicate> predicates = new ArrayList<Predicate>();
+
+                if (org.apache.commons.lang3.StringUtils.isNotBlank(applicant)) {
+                    Predicate predicate = cb.like(root.get("applicant").as(String.class), "%" + applicant + "%");
+                    predicates.add(predicate);
+                }
+                if (StringUtils.isNotBlank(address)) {
+                    Predicate predicate = cb.like(root.get("address").as(String.class), "%" + address + "%");
+                    predicates.add(predicate);
+                }
+                if (predicates.size() == 0) {
+                    return null;
+                }
+                Predicate[] p = new Predicate[predicates.size()];
+                return cb.and(predicates.toArray(p));
+            }
+        };
+
+        return foodFacilityRepository.findAll(specification);
     }
 }

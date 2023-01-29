@@ -3,6 +3,7 @@ package com.leo.demo.foodapp.foodapi.models.dto.food;
 import com.leo.demo.foodapp.foodapi.models.base.BaseRequest;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Min;

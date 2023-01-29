@@ -1,7 +1,7 @@
 package com.leo.demo.foodapp.foodapi.shiro;
 
 import com.leo.demo.foodapp.foodapi.dummydatabase.UserBean;
-import com.leo.demo.foodapp.foodapi.dummydatabase.UserService;
+import com.leo.demo.foodapp.foodapi.impl.UserService;
 import com.leo.demo.foodapp.foodapi.util.JWTUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

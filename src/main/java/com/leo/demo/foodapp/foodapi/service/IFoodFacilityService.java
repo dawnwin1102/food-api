@@ -26,4 +26,6 @@ public interface IFoodFacilityService {
     Optional<FoodFacility> getFoodFacilityByLocationId(Integer locationId);
 
     List<FoodFacility> getFoodFacilityByApplicant(FoodFacilityRequest request);
+
+    List<FoodFacility> getFoodFacilityByApplicantOrAddress(FoodFacilityRequest request);
 }
