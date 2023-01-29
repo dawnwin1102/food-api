@@ -23,7 +23,7 @@ This is a demo project to build web API that returns a set of food trucks.
 docker run xxx
 # Tradeoffs
 With a limit time budget, I think the most import point to build a web api is:
--Unified response, global exception capture, api security, performance, traceability, simple and clear documentation
+- Unified response, global exception capture, api security, performance, traceability, simple and clear documentation
 # Future improvement
 - Separate models,service... into deferent modules not in a single application
 - Use standard db like Mysql/PostgreSQL/SQL Server to deal with complex business
