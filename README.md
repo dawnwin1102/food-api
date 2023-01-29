@@ -3,6 +3,7 @@ This is a demo project to build web API that returns a set of food trucks.
 ## Description:
 - A single spring boot application load input csv files into db and provide web apis.
 ## Features
+- Use JPA and sqlite as data persistence strategy
 - All APIs have a unified corresponding format
 - Global exception handling
 - Use tlog for call chain tracking
