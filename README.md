@@ -20,8 +20,25 @@ This is a demo project to build web API that returns a set of food trucks.
 3. Start app with this command: java -jar food-api-0.0.1-SNAPSHOT.jar
 4. Go to Eureka endpoint:https://localhost:8081/doc.html Knife4j's UI will show as blow:
 ![image.png](https://leowebsite.blob.core.windows.net/images/eureka.png)
-# Run project with docker
-docker run xxx
+# Run project with docker 
+sudo docker run -it -d --restart always -p 8088:8081 --name food-api-8088 food-api bash
+when container started goto https://localhost:8088/doc.html
+# API Description
+There is 3 controller and 7 apis expose fo demo
+- /food/list need pagable request then response with paged result.(eg:{
+  "page": 1,
+  "size": 10
+  })
+- /food/listByApplicant will result with specific applicant(eg:{
+  "applicant": "MOMO INNOVATION LLC"
+  })
+- /food/listByApplicantOrAddress will result with specific applicant or address(eg:{
+  "address": "1 BUSH ST",
+  "applicant": "MOMO INNOVATION LLC"
+  })
+- /user/login this api will grant a jwt token if login success(username:leo,password:leo123)
+- /food/auth/list same as  /food/list but this api need Authorization ,use /user/login get token first then call api with Authorization header.
+ eg:Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NzUwMjc2MTQsInVzZXJuYW1lIjoibGVvIn0.JcgERv_AjgCF0M1hi6oYLPPABIGjbP4KEHnsnYpcgE8
 # Tradeoffs
 With a limit time budget, I think the most import point to build a web api is:
 - Unified response, global exception capture, api security, performance, traceability, simple and clear documentation
