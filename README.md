@@ -62,7 +62,7 @@ With a limit time budget, I think the most import points to build a web api are:
 - Use standard db like Mysql/PostgreSQL/SQL Server to deal with complex data struct like Geometry
 - Use redis as a centralized cache component to set up a three level cache management to improve cache abaility
 - Add centralized log solution(Ali logs/ELK)
-- Setup a Oauth server as a center author service to author our apis
+- Setup a Oauth server as a center auth service to auth our apis
 - Setup apigateway to do the SSL termination,load balance,configure traffic limiting policy..
 - Build application in a micro service way(spring cloud/k8s).
 
