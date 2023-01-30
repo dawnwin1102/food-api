@@ -3,6 +3,7 @@ package com.leo.demo.foodapp.foodapi;
 import com.leo.demo.foodapp.foodapi.impl.IFoodFacilityServiceImpl;
 import com.leo.demo.foodapp.foodapi.models.dto.food.FoodFacilityRequest;
 import com.leo.demo.foodapp.foodapi.models.entities.FoodFacility;
+import com.leo.demo.foodapp.foodapi.util.JWTUtil;
 import com.opencsv.exceptions.CsvException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -59,5 +60,19 @@ class FoodApiApplicationTests {
         Assertions.assertThrows(Exception.class, () -> {
             foodFacilityService.getFoodFacilityByApplicant(null);
         });
+    }
+
+    @Test
+    void testJWTUtilgetUsernameFromValidToken() {
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NzUwMjc2MTQsInVzZXJuYW1lIjoibGVvIn0.JcgERv_AjgCF0M1hi6oYLPPABIGjbP4KEHnsnYpcgE8";
+        String userName = JWTUtil.getUsername(token);
+        Assertions.assertEquals("leo",userName);
+    }
+
+    @Test
+    void testJWTUtilgetUsernameFromWrongToken() {
+        String token = "xxxeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NzUwMjc2MTQsInVzZXJuYW1lIjoibGVvIn0.JcgERv_AjgCF0M1hi6oYLPPABIGjbP4KEHnsnYpcgE8";
+        String userName = JWTUtil.getUsername(token);
+        Assertions.assertNull(userName);
     }
 }
