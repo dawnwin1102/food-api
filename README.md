@@ -11,8 +11,6 @@ This is a demo project to build web API that returns a set of food trucks.
 - Use shiro for identity authentication and authentication
 - Use CaffeineCache for local cache and response cache
 - Use Knife4j as api document
-# System Diagram
-![DemoDiagram.jpg](https://leowebsite.blob.core.windows.net/images/DemoDiagram.jpg)
 
 # Buld project and run
 1. Clone the project from git hub.
