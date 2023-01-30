@@ -14,13 +14,18 @@ This is a demo project to build web API that returns a set of food trucks.
 
 # Buld project and run
 1. Clone the project from git hub.
-2. Use mvn build each project:./mvnw clean package -Dmaven.test.skip=true
-3. Start app with this command: java -jar food-api-0.0.1-SNAPSHOT.jar
-4. Go to endpoint:https://localhost:8081/doc.html Knife4j's UI will show as blow:
+2. Use mvn build project:
+```
+./mvnw clean package -Dmaven.test.skip=true
+```
+4. Start app with this command: ```java -jar food-api-0.0.1-SNAPSHOT.jar```
+5. Go to endpoint:https://localhost:8081/doc.html Knife4j's UI will show as blow:
 <img width="1493" alt="image" src="https://user-images.githubusercontent.com/28502900/215373215-5f18404d-1d5e-421d-912d-86b095f9a968.png">
 
 # Run project with docker
+```
 - sudo docker run -it -d --restart always -p 8088:8081 --name food-api-8088 dawnwin1102/dawnwin1102:latest bash
+```
 when container started goto https://localhost:8088/doc.html
 # API Description
 There is 3 controller and 7 apis expose fo demo
