@@ -24,7 +24,7 @@ This is a demo project to build web API that returns a set of food trucks.
 
 # Run project with docker
 ```
-- sudo docker run -it -d --restart always -p 8088:8081 --name food-api-8088 dawnwin1102/dawnwin1102:latest bash
+- sudo docker run -it -d --restart always -p 8088:8081 --name food-api-8088 dawnwin1102/food-api:latest bash
 ```
 when container started goto https://localhost:8088/doc.html
 # API Description
